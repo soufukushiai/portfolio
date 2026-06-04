@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>そう｜現場のAI活用</title>
+  <meta name="description" content="福祉現場で働きながらAI活用を発信中。就労継続支援施設の支援員そうのポートフォリオサイトです。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2540;
+      --navy-light: #253256;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── ナビゲーション ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(26, 37, 64, 0.96);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      padding: 0 24px;
+    }
+
+    nav .inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    nav .logo {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: #fff; }
+
+    /* ── ヒーロー ── */
+    #hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #2d4070 100%);
+      color: white;
+      padding: 140px 24px 80px;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: rgba(59,130,246,0.25);
+      color: var(--accent-light);
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 999px;
+      padding: 4px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+
+    #hero h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    #hero h1 span { color: var(--accent-light); }
+
+    #hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-outline  { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5); }
+
+    /* ── セクション共通 ── */
+    section { padding: 72px 24px; }
+
+    .section-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--accent);
+      border-radius: 6px;
+      padding: 3px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .section-lead {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+    }
+
+    /* ── プロフィール ── */
+    #profile { background: var(--card); }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .profile-avatar {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 100%);
+      border-radius: 16px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: white;
+    }
+
+    .profile-body h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--navy);
+    }
+
+    .profile-sub {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+    }
+
+    .profile-body p {
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      line-height: 1.9;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      background: #f1f5f9;
+      color: var(--text);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    /* ── note実績 ── */
+    #notes { background: var(--bg); }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .note-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: block;
+    }
+
+    .note-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+
+    .note-category {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .note-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+
+    .note-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .note-more {
+      text-align: center;
+    }
+
+    /* ── サービス ── */
+    #services { background: var(--card); }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .service-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ── 問い合わせフォーム ── */
+    #contact { background: var(--bg); }
+
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 600px;
+    }
+
+    .form-row {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    label .required {
+      color: var(--accent);
+      font-size: 0.75rem;
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+    }
+
+    textarea { min-height: 130px; resize: vertical; }
+
+    .form-submit { margin-top: 8px; }
+
+    /* ── SNSリンク ── */
+    #links { background: var(--navy); color: white; }
+
+    #links .section-title { color: white; }
+    #links .section-tag { background: rgba(59,130,246,0.2); color: var(--accent-light); }
+    #links .section-lead { color: rgba(255,255,255,0.6); }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: white;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .link-card:hover { background: rgba(255,255,255,0.13); transform: translateY(-2px); }
+
+    .link-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .link-icon.x      { background: #000; }
+    .link-icon.note   { background: #41c9b4; }
+    .link-icon.mail   { background: var(--accent); }
+
+    .link-card-body h5 { font-size: 0.95rem; font-weight: 700; }
+    .link-card-body p  { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+
+    /* ── フッター ── */
+    footer {
+      background: #0f1829;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+    }
+
+    /* ── レスポンシブ ── */
+    @media (max-width: 640px) {
+      .profile-grid { grid-template-columns: 1fr; }
+      .profile-avatar { max-width: 120px; }
+      nav ul { display: none; }
+      .contact-form { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ナビゲーション -->
+<nav>
+  <div class="inner">
+    <a href="#hero" class="logo">そう｜現場のAI活用</a>
+    <ul>
+      <li><a href="#profile">プロフィール</a></li>
+      <li><a href="#notes">note</a></li>
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ヒーロー -->
+<section id="hero">
+  <div class="hero-label">福祉 × AI活用</div>
+  <h1>現場を変える、<br><span>AIの使い方</span>を届ける</h1>
+  <p>就労継続支援施設で働きながら、福祉現場で本当に使えるAI活用術をわかりやすく発信しています。</p>
+  <div class="hero-btns">
+    <a href="#notes" class="btn btn-primary">note記事を見る</a>
+    <a href="#contact" class="btn btn-outline">お問い合わせ</a>
+  </div>
+</section>
+
+<!-- プロフィール -->
+<section id="profile">
+  <div class="section-inner">
+    <div class="section-tag">PROFILE</div>
+    <h2 class="section-title">プロフィール</h2>
+    <p class="section-lead">ちょっと変わった経歴を持つ、福祉現場のAI活用発信者です。</p>
+
+    <div class="profile-grid">
+      <div class="profile-avatar">🌿</div>
+      <div class="profile-body">
+        <h3>そう</h3>
+        <p class="profile-sub">就労継続支援施設 支援員 ／ AI活用発信者</p>
+
+        <p>セラピスト・医療情報担当者（MR）・飲食店・リラクゼーションサロン経営・不登校支援カウンセラーを経て、現在は就労継続支援B型施設で支援員として働いています。</p>
+
+        <p>「AIって難しそう」と思っていた自分が使い始めたら、書類作成が<strong>半分以下の時間</strong>で終わり、営業アイデアが<strong>10分</strong>で出てくるように。同じ現場の仲間にも届けたくて発信を始めました。</p>
+
+        <p>将来の夢は、障がいのある方が生き生きと働ける<strong>自分の施設を立ち上げること</strong>。noteの発信はその第一歩です。</p>
+
+        <div class="tag-list">
+          <span class="tag">就労継続支援</span>
+          <span class="tag">AI活用</span>
+          <span class="tag">福祉現場</span>
+          <span class="tag">ChatGPT</span>
+          <span class="tag">Claude</span>
+          <span class="tag">業務効率化</span>
+          <span class="tag">非エンジニア向け</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- note記事・実績 -->
+<section id="notes">
+  <div class="section-inner">
+    <div class="section-tag">NOTE</div>
+    <h2 class="section-title">note 記事・実績</h2>
+    <p class="section-lead">福祉現場のリアルな視点でAI活用をわかりやすく解説しています。</p>
+
+    <div class="note-grid">
+      <a href="https://note.com/" target="_blank" rel="noopener" class="note-card">
+        <div class="note-category">AI活用入門</div>
+        <h4>ChatGPTを使ったら書類作成時間が半分になった話</h4>
+        <p>実際の業務でどう使ったか、手順をそのまま公開します。</p>
+      </a>
+
+      <a href="https://note.com/" target="_blank" rel="noopener" class="note-card">
+        <div class="note-category">現場の工夫</div>
+        <h4>支援員がAIで個別支援計画を作ってみた</h4>
+        <p>入力する情報・プロンプトのコツ・注意点をまとめました。</p>
+      </a>
+
+      <a href="https://note.com/" target="_blank" rel="noopener" class="note-card">
+        <div class="note-category">初心者向け</div>
+        <h4>スマホだけでできる！AI活用3ステップ</h4>
+        <p>パソコンなし・プログラミング知識なしでも大丈夫な方法です。</p>
+      </a>
+    </div>
+
+    <div class="note-more">
+      <a href="https://note.com/" target="_blank" rel="noopener" class="btn btn-primary">すべての記事を見る（note）</a>
+    </div>
+  </div>
+</section>
+
+<!-- サービス -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-tag">SERVICES</div>
+    <h2 class="section-title">できること・提供サービス</h2>
+    <p class="section-lead">福祉現場の目線から、現実的なAI活用をサポートします。</p>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">📝</div>
+        <h4>note記事の発信</h4>
+        <p>福祉職員向けに、難しい言葉を使わないAI活用記事を週1〜2本ペースで更新中。</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h4>現場向けAI相談（準備中）</h4>
+        <p>「うちの職場でAIって使えるの？」という相談に、現場目線でお答えします。</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎓</div>
+        <h4>AI活用勉強会（準備中）</h4>
+        <p>施設スタッフ向けに、実際に手を動かしながら学べるワークショップを計画中。</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">💼</div>
+        <h4>AIコンサル（フェーズ2）</h4>
+        <p>福祉施設の経営者・管理者向けに、業務効率化・AI導入のご支援をご提案予定。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag">CONTACT</div>
+    <h2 class="section-title">お問い合わせ</h2>
+    <p class="section-lead">取材・コラボ・相談など、お気軽にどうぞ。</p>
+
+    <div class="contact-form">
+      <!-- ※ Cloudflare Forms や Formspree などと連携してください -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <label>お名前<span class="required">必須</span></label>
+          <input type="text" name="name" placeholder="山田 太郎" required />
+        </div>
+
+        <div class="form-row">
+          <label>メールアドレス<span class="required">必須</span></label>
+          <input type="email" name="email" placeholder="example@email.com" required />
+        </div>
+
+        <div class="form-row">
+          <label>お問い合わせ種類</label>
+          <select name="type">
+            <option value="">選択してください</option>
+            <option value="取材・メディア">取材・メディア</option>
+            <option value="コラボ・提携">コラボ・提携</option>
+            <option value="AI活用相談">AI活用相談</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label>メッセージ<span class="required">必須</span></label>
+          <textarea name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary" style="width:100%; border:none; font-size:1rem; cursor:pointer;">
+            送信する
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SNSリンク -->
+<section id="links">
+  <div class="section-inner">
+    <div class="section-tag">LINKS</div>
+    <h2 class="section-title">SNS・リンク</h2>
+    <p class="section-lead">各SNSでも発信中です。フォローお待ちしています！</p>
+
+    <div class="links-grid">
+      <a href="https://x.com/" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon x">𝕏</div>
+        <div class="link-card-body">
+          <h5>X（旧Twitter）</h5>
+          <p>日々のAI活用Tips</p>
+        </div>
+      </a>
+
+      <a href="https://note.com/" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon note">n</div>
+        <div class="link-card-body">
+          <h5>note</h5>
+          <p>AI活用記事を発信中</p>
+        </div>
+      </a>
+
+      <a href="mailto:golfsaiko1034@gmail.com" class="link-card">
+        <div class="link-icon mail">✉</div>
+        <div class="link-card-body">
+          <h5>メール</h5>
+          <p>お問い合わせはこちら</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <p>© 2026 そう｜現場のAI活用</p>
+</footer>
+
+</body>
+</html>
