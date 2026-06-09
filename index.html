@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>そう | AIで、仕事を変える</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -287,7 +288,7 @@
           <li>MR（医療情報担当者）</li>
           <li>リラクゼーションサロン経営</li>
           <li>不登校サポート事業経営</li>
-          <li>現在：就労継続支援B型 / 生活介護施設（アルバイト）</li>
+          <li>現在：福祉施設支援員（アルバイト）/ AIコンサルタント・中小企業のAI活用パートナー</li>
         </ul>
       </div>
       <div class="about-card">
@@ -471,17 +472,23 @@
     <p class="section-desc">AI活用の実践・発信を続けています。</p>
     <div class="sns-grid fade-in">
       <a href="https://note.com/sou_fukushi_ai" target="_blank" class="sns-card">
-        <div class="icon">📝</div>
+        <div class="icon" style="color:#41C9B4;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2zm.5 1.5L18.5 7H15V3.5zM6 20V4h7v5h5v11H6zm2-9h8v1H8v-1zm0 3h8v1H8v-1zm0 3h5v1H8v-1z"/></svg>
+        </div>
         <div class="name">note</div>
         <div class="handle">@sou_fukushi_ai</div>
       </a>
       <a href="https://x.com/soufukushiai" target="_blank" class="sns-card">
-        <div class="icon">🐦</div>
+        <div class="icon" style="color:#000000;">
+          <i class="fa-brands fa-x-twitter" style="font-size:2rem;"></i>
+        </div>
         <div class="name">X (Twitter)</div>
         <div class="handle">@soufukushiai</div>
       </a>
       <a href="https://instagram.com/sou.fukushi.ai" target="_blank" class="sns-card">
-        <div class="icon">📸</div>
+        <div class="icon" style="background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">
+          <i class="fa-brands fa-instagram" style="font-size:2rem;"></i>
+        </div>
         <div class="name">Instagram</div>
         <div class="handle">@sou.fukushi.ai</div>
       </a>
@@ -532,9 +539,7 @@
 <footer>
   <p>© 2026 そう | AIで、仕事を変える</p>
   <p style="margin-top:.4rem;">
-    <a href="https://note.com/sou_fukushi_ai">note</a> ·
-    <a href="https://x.com/soufukushiai">X</a> ·
-    <a href="https://instagram.com/sou.fukushi.ai">Instagram</a>
+    <a href="https://note.com/sou_fukushi_ai">note</a> · <a href="https://x.com/soufukushiai"><i class="fa-brands fa-x-twitter"></i> X</a> · <a href="https://instagram.com/sou.fukushi.ai"><i class="fa-brands fa-instagram"></i> Instagram</a>
   </p>
 </footer>
 
@@ -545,19 +550,7 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  function sendMail(e) {
-    e.preventDefault();
-    const name = document.querySelector('[name="name"]').value;
-    const email = document.querySelector('[name="email"]').value;
-    const type = document.querySelector('[name="type"]').value;
-    const message = document.querySelector('[name="message"]').value;
-    const body = encodeURIComponent(
-      `お名前：${name}\nメール：${email}\n種別：${type}\n\n${message}`
-    );
-    window.location.href = `mailto:sou.fukushi.ai@gmail.com?subject=${encodeURIComponent('【お問い合わせ】' + type)}&body=${body}`;
-    document.getElementById('form-success').style.display = 'block';
-    document.getElementById('contact-form').reset();
-  }
+
 </script>
 </body>
 </html>
